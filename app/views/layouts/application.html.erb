@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pictgram</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <li>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
+      <div class="container">
+        <%= link_to root_path do %>
+          <span><%=image_tag 'icons/42f8e21aee054c81ba7c39f501eca2fa.jpg', class: 'navbar-brand' %></span>
+        <% end %>
+        <ul class="nav navbar-nav navbar-right">
+          <% if logged_in? %>
+             <li>
+               <%= link_to favorites_path do %>
+                <%= image_tag 'icons/no-translate-detected_1061-525.jpg' %>
+               <% end %>
+             </li>
+             <li>
+              <%= link_to new_topic_path do %>
+               <%=image_tag 'icons/no-translate-detected_318-1663.jpg' %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to logout_path, method: :delete do %>
+               <%=image_tag 'icons/logout_318-70775.jpg' %>
+              <% end %>
+           </li>
+         <% else %>
+         <li>
+           <%= link_to new_user_path do %>
+           <%= image_tag 'icons/26735721-今すぐメンバー登録ボタン記号やアイコンを登録します。.jpg' %>
+           <% end %>
+         </li>
+         <li>
+           <%= link_to login_path do %>
+            <%= image_tag 'icons/40577169-ログイン-アイコン。白い背景の上のインター-ネット-ボタン。.jpg' %>
+           <% end %>
+         </li>
+       <% end %>
+     </ul>
+   </div>
+ </nav>
+
+    <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <%= flash[:notice] %>
+    </div>
+    <% end %>
+    <% if flash[:alert] %>
+     <div class="alert alert-danger">
+       <%= flash[:alert] %>
+     </div>
+     <% end %>
+     <%= yield %>
+  </body>
+</html>
